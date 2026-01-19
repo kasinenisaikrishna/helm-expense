@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: expense
+  labels:
+    app: frontend
+    tier: web
+    project: expense
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: frontend
+      tier: web
+      project: expense
+  template:
+    metadata:
+      labels:
+          app: frontend
+          tier: web
+          project: expense
+    spec:
+      containers:
+      - name: frontend
+        image: 9689mahesh/frontend:{{ .Values.deployment.imageVersion }}
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          # limits should be greater than or equal to requests but not less than requests
+          limits:
+            cpu: 100m
+            memory: 128Mi
