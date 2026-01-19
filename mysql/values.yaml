@@ -1,0 +1,6 @@
+deployment:
+  imageVersion: v1
+  replicas: 2
+service:
+  imageVersion: v1
+  port: 3306
